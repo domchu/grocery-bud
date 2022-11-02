@@ -1,7 +1,18 @@
 import React from "react";
 import { FaEdit, FaTrash } from "react-icons/fa";
 const List = ({ items }) => {
-  return <h2>list component</h2>;
+  return (
+    <div className="grocery-list">
+      {items.map((item) => {
+        const { id, title } = item;
+        return (
+          <article className="grocery-item" key={id}>
+            <p className="title">{title} </p>
+          </article>
+        );
+      })}
+    </div>
+  );
 };
 
 export default List;
