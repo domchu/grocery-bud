@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import List from "./List";
 import Alert from "./Alert";
+import { type } from "@testing-library/user-event/dist/type";
 
 function App() {
   const [name, setName] = useState("");
@@ -8,15 +9,16 @@ function App() {
   const [isEditing, setIsEditing] = useState(false);
   const [editID, setEditID] = useState(null);
   const [alert, setAlert] = useState({
-    show: true,
-    msg: "hello world",
-    type: "success",
+    show: false,
+    msg: "",
+    type: "",
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!name) {
       // display alert
+      setAlert(true, "danger", "please enter value ");
     } else if (name && isEditing) {
       // deal with editID
     } else {
@@ -25,6 +27,10 @@ function App() {
     }
     setList(...list, newItem);
     setName("");
+  };
+
+  const showAlert = (show = false, type = "", msg = "") => {
+    setAlert({ show, type, msg });
   };
 
   return (
