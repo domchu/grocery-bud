@@ -35,7 +35,7 @@ function App() {
       showAlert(true, "success", "value changed");
     } else {
       // show alert
-      showAlert(true, "success", "item added to the list");
+      showAlert(false, "success", "item added to the list");
       const newItem = { id: new Date().getTime().toString(), title: name };
       setList([...list, newItem]);
       setName("");
@@ -65,7 +65,7 @@ function App() {
   return (
     <section className="section-center">
       <form className="grocery-form" onSubmit={handleSubmit}>
-        {alert.show && <Alert {...alert} removeAlert={showAlert} />}
+        {alert.show && <Alert {...alert} removeAlert={showAlert} list={list} />}
         <h3>Grocery Bud</h3>
         <div className="form-control">
           <input
