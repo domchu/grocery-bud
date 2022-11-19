@@ -18,15 +18,15 @@ function App() {
     e.preventDefault();
     if (!name) {
       // display alert
-      setAlert(true, "danger", "please enter value ");
+      showAlert(true, "danger", "please enter value ");
     } else if (name && isEditing) {
       // deal with editID
     } else {
       // show alert
-      const newItem = { id: new date().getTime().toString(), title: name };
+      const newItem = { id: new Date().getTime().toString(), title: name };
+      setList([...list, newItem]);
+      setName("");
     }
-    setList(...list, newItem);
-    setName("");
   };
 
   const showAlert = (show = false, type = "", msg = "") => {
