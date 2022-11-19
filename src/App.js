@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import List from "./List";
 import Alert from "./Alert";
 
+//get items from the local storage
 const getLocalStorage = () => {
   let list = localStorage.getItem("list");
   if (list) {
@@ -50,20 +51,24 @@ function App() {
       setName("");
     }
   };
-
+  //show thw alert items
   const showAlert = (show = false, type = "", msg = "") => {
     setAlert({ show, type, msg });
   };
 
+  //clear list function
   const clearList = () => {
     showAlert(true, "danger", "empty list");
     setList([]);
   };
+
+  //remove item function
   const removeItem = (id) => {
     showAlert(true, "danger", "item removed ");
     setList(list.filter((item) => item.id !== id));
   };
 
+  //edit item function
   const editItem = (id) => {
     const specificItem = list.filter((item) => item.id === id);
     setIsEditing(true);
@@ -71,6 +76,7 @@ function App() {
     setName(specificItem.title);
   };
 
+  //set item in a local storage
   useEffect(() => {
     localStorage.setItem("list", JSON.stringify(list));
   }, [list]);
